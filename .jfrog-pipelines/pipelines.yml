@@ -8,21 +8,10 @@ pipelines:
           environmentVariables:
             - animal: dog
               bird: sparrow
+            - animal: neha
+              bird: neha
            # - animal: cat
            #   bird: crow 
-          runtimes:
-            - type: image
-              image:
-                auto:
-                  language: node
-                  versions:
-                    - "12.18.2"
-            - type: image
-              image:
-                auto:
-                  language: node
-                  versions:
-                    - 8.17.0    
        
         execution:
           onExecute:
