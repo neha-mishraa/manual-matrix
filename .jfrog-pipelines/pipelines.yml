@@ -4,9 +4,9 @@ pipelines:
       - name: S_Matrix_0028
         type: Matrix
         stepMode: Bash
+        runtime:
+          type: host
         stepletMultipliers:
-          runtime:
-            type: host
           environmentVariables:
             - animal: dog
               bird: sparrow
