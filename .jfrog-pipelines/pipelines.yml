@@ -5,6 +5,8 @@ pipelines:
         type: Matrix
         stepMode: Bash
         stepletMultipliers:
+          runtime:
+            type: host
           environmentVariables:
             - animal: dog
               bird: sparrow
