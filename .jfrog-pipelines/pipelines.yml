@@ -13,8 +13,14 @@ pipelines:
               bird: sparrow
             - animal: neha
               bird: neha
-           # - animal: cat
-           #   bird: crow 
+            - animal: cat
+              bird: crow 
+            - animal: dog1
+              bird: sparrow1
+            - animal: neha1
+              bird: neha1
+            - animal: cat1
+              bird: crow1
        
         execution:
           onExecute:
