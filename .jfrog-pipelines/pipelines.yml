@@ -35,14 +35,14 @@ pipelines:
         configuration:
          multiNode: true
          priority: 1
-          timeoutSeconds: 3600 # 60 minutes
-          runtime:
-            type: image
-            image:
-              auto:
-                language: go
-                versions:
-                  - "1.21"
+         timeoutSeconds: 3600 # 60 minutes
+         runtime:
+           type: image
+           image:
+             auto:
+               language: go
+               versions:
+                 - "1.21"
         stepletMultipliers:
           environmentVariables:
             - foo: "bar1"
