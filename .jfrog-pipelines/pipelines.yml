@@ -26,3 +26,45 @@ pipelines:
           onExecute:
             - echo "Executing matrix step on ${steplet_id}"
             - echo "Variation animal = ${animal}, bird = ${bird}"
+
+  - name: S_Matrix_MN_008
+    steps:
+      - name: S_Matrix_MN_008
+        type: Matrix
+        stepMode: Bash
+        configuration:
+         multiNode: true
+         priority: 1
+          timeoutSeconds: 3600 # 60 minutes
+          runtime:
+            type: image
+            image:
+              auto:
+                language: go
+                versions:
+                  - "1.21"
+        stepletMultipliers:
+          environmentVariables:
+            - foo: "bar1"
+            - foo: "bar2"
+            - foo: "bar3"
+            - foo: "bar4"
+            - foo: "bar5"
+            - foo: "bar6"
+            - foo: "bar7"
+            - foo: "bar8"
+            - foo: "bar9"
+            - foo: "bar10"
+            - foo: "bar11"
+            - foo: "bar12"          
+        execution:
+          onStart:
+            - echo $foo
+          onExecute:
+            - echo $foo
+          onSuccess:
+            - echo $foo
+          onFailure:
+            - echo $foo
+          onComplete:
+            - echo $foo
