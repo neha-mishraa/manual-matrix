@@ -1,40 +1,38 @@
 resources:
-  - name: myAqlResource
+  - name: r_Aql
     type: Aql
     configuration:
-      sourceArtifactory: myArtifactoryIntegration
-      query: items.find({"@build.name":{"$eq":"buildName"}})
-  - name: myReleaseBundle
-    type: ReleaseBundle
-    configuration:
-      sourceDistribution: myDistributionIntegration
-      name: name
-      version: '1'
+      sourceArtifactory: s_artifactory
+      query: items.find({"@build.name":{"$eq":"artifactory"}})
+      addedProperties:
+        key1: value1
+        key2: value2
+      mappings:
+        - name: mapping1
+          input: IN
+          output: test1
+        - name: mapping2
+          input: IN
+          output: test2
 
 pipelines:
-  - name: pipelineToUpdateResource
+  - name: pipelines_r_Aql
     steps:
-      - name: myBashStep
+      - name: Bash_Aql_Output
         type: Bash
         configuration:
-          integrations:
-            - name: myArtifactoryIntegration
           outputResources:
-            - name: myAqlResource
+            - name: r_Aql
         execution:
           onExecute:
-            - write_output myAqlResource query='items.find({"@build.name":{"$eq":"myBuildName"}})'
+            - echo "executing step..."
+           # - write_output r_Aql "query=items.find({"repo": "mvn_test_repo"})"
 
-  - name: CreateReleaseBundlePipeline
-    configuration:
-      inputResources:
-        - name: myAqlResource
-      outputResources:
-        - name: myReleaseBundle
-    steps:
-      - name: myCreateReleaseBundleStep
-        type: CreateReleaseBundle
+      - name: Bash_Aql_Input
+        type: Bash
         configuration:
-          releaseBundleName: ${JFROG_CLI_BUILD_NAME}
-          releaseBundleVersion: ${run_id}
-          dryRun: true
+          inputResources:
+            - name: r_Aql
+        execution:
+          onExecute:
+            - echo "executing step..."
